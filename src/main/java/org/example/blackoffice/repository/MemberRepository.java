@@ -3,7 +3,6 @@ package org.example.blackoffice.repository;
 import org.example.blackoffice.model.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
 import java.util.Optional;
 
 @Repository

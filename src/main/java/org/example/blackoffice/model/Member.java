@@ -12,6 +12,10 @@ import lombok.*;
 @Table(name = "member")
 public class Member {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+  
+    @Column(length = 50, unique = true)
     private String email;
 
     @Column(nullable = true)
@@ -20,7 +24,7 @@ public class Member {
     @Column(nullable = true)
     private String googleId;
 
-    @Column
+    @Column(nullable = true)
     private String displayName;
 
     @Builder
