@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "https://sweet-heads-happen.loca.lt")
 @RestController
 @RequestMapping("/api/members")
 public class MemberController {
@@ -26,7 +27,7 @@ public class MemberController {
             return ResponseEntity.badRequest().body("잘못된 입력 값");
         }
         try {
-            memberService.registerMember(memberdto.getUsername(), memberdto.getPassword(), memberdto.getEmail());
+            memberService.registerMember(memberdto.getPassword(), memberdto.getEmail());
             return ResponseEntity.ok("회원가입 성공");
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -35,7 +36,7 @@ public class MemberController {
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody Member member) {
-        boolean isLoggedIn = memberService.login(member.getUsername(), member.getPassword());
+        boolean isLoggedIn = memberService.login(member.getEmail(), member.getPassword());
         if (isLoggedIn) {
             return ResponseEntity.ok("로그인 성공");
         } else {
