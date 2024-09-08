@@ -21,23 +21,22 @@ public class MemberService {
         this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
-    public Member registerMember(String username, String password, String email) {
-        Optional<Member> existingMember = memberRepository.findByUsername(username);
+    public Member registerMember(String password, String email) {
+        Optional<Member> existingMember = memberRepository.findByEmail(email);
         if (existingMember.isPresent()) {
             throw new IllegalArgumentException("이미 존재하는 사용자입니다.");
         }
 
         String encodedPassword = passwordEncoder.encode(password);
         Member member = new Member();
-        member.setUsername(username);
         member.setPassword(encodedPassword);
         member.setEmail(email);
 
         return memberRepository.save(member);
     }
 
-    public boolean login(String username, String password) {
-        Optional<Member> memberOptional = memberRepository.findByUsername(username);
+    public boolean login(String email, String password) {
+        Optional<Member> memberOptional = memberRepository.findByEmail(email);
         if (memberOptional.isPresent()) {
             Member member = memberOptional.get();
             return passwordEncoder.matches(password, member.getPassword());
