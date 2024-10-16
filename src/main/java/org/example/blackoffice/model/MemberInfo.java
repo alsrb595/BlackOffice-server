@@ -1,5 +1,6 @@
 package org.example.blackoffice.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,5 +35,6 @@ public class MemberInfo {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "member_id")
+    @JsonBackReference
     private Member member;
 }
