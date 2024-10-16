@@ -5,6 +5,7 @@ import org.example.blackoffice.dto.MemberInfoDto;
 import org.example.blackoffice.model.MemberInfo;
 import org.example.blackoffice.service.MemberInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,7 +20,7 @@ public class MemberInfoController {
     }
 
     @PostMapping("/save/{id}")
-    public MemberInfo saveMemberInfo(@RequestBody MemberInfoDto memberInfo, @PathVariable Long id) {
-        return memberInfoService.saveMemberInfo(memberInfo, id);
+    public ResponseEntity<MemberInfo> saveMemberInfo(@RequestBody MemberInfoDto memberInfo, @PathVariable Long id) {
+        return ResponseEntity.ok(memberInfoService.saveMemberInfo(memberInfo, id));
     }
 }

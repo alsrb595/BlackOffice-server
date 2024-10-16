@@ -19,4 +19,5 @@ import java.util.List;
 public class PostCreateDto {
     private String writer;
     private String content;
+    private Long userId;
 }
