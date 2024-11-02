@@ -1,5 +1,6 @@
 package org.example.blackoffice.service;
 
+import jakarta.transaction.Transactional;
 import org.example.blackoffice.dto.SeatDetailDto;
 import org.example.blackoffice.model.Seat;
 import org.example.blackoffice.repository.SeatRepository;
@@ -25,7 +26,8 @@ public class SeatService {
         return seatRepository.findAllByBuilding(building).orElse(null);
     }
 
-    public List<Seat> getDetailSeat(SeatDetailDto seatDetailDto){
-        return seatRepository.findAllByBuildingAndLocation(seatDetailDto.getBuilding(), seatDetailDto.getLocation());
+    @Transactional
+    public List<Seat> getDetailSeat(String building, String location){
+        return seatRepository.findAllByBuildingAndLocation(building, location);
     }
 }

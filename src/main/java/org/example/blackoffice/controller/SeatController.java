@@ -40,8 +40,8 @@ public class SeatController {
     }
 
     @GetMapping("/all_seat/detail")
-    public ResponseEntity<List<Seat>> getDetailSeat(@RequestBody SeatDetailDto seatDetailDto) {
-        List<Seat> seats = seatService.getDetailSeat(seatDetailDto);
+    public ResponseEntity<List<Seat>> getDetailSeat(@RequestParam String building, @RequestParam String location) {
+        List<Seat> seats = seatService.getDetailSeat(building, location);
         return ResponseEntity.ok(seats);
     }
 
