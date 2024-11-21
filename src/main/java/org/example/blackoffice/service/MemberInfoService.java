@@ -20,7 +20,7 @@ public class MemberInfoService {
     }
 
     public MemberInfo saveMemberInfo(MemberInfoDto memberInfoData, Long id) {
-        Member member = memberRepository.findById(String.format("%d", id)).orElseThrow(() -> new RuntimeException("Member not found"));
+        Member member = memberRepository.findById(id).orElseThrow(() -> new RuntimeException("Member not found"));
         MemberInfo memberInfo = new MemberInfo();
         memberInfo.setMember(member);
 

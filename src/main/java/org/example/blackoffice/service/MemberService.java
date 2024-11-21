@@ -35,13 +35,23 @@ public class MemberService {
         return memberRepository.save(member);
     }
 
-    public boolean login(String email, String password) {
+    public Optional<Long> login(String email, String password) {
         Optional<Member> memberOptional = memberRepository.findByEmail(email);
         if (memberOptional.isPresent()) {
             Member member = memberOptional.get();
-            return passwordEncoder.matches(password, member.getPassword());
-        } else {
-            return false;
+            if (passwordEncoder.matches(password, member.getPassword())) {
+                return Optional.of(member.getId());  // 로그인 성공 시 memberId 반환
+            }
         }
+        return Optional.empty();  // 로그인 실패 시 빈 값 반환
     }
+
+    public Optional<Member> findById(Long memberId) {
+        return memberRepository.findById(memberId);
+    }
+
+    public Optional<Member> findByEmail(String email) {
+        return memberRepository.findByEmail(email);
+    }
+
 }
