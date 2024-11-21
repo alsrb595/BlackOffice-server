@@ -6,6 +6,10 @@ import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.example.blackoffice.model.Task;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter @Setter
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
@@ -31,6 +35,9 @@ public class Member {
     @OneToOne(mappedBy = "member") // OneToOne 관계에서는 부모 엔티티에 mappedBy를 적어주면 된다.
     @JsonManagedReference
     private MemberInfo memberInfo;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Task> tasks = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference

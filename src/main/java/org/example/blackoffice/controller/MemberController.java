@@ -34,13 +34,15 @@ public class MemberController {
         }
     }
 
-    @PostMapping("/login")
+    /*@PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody Member member) {
         boolean isLoggedIn = memberService.login(member.getEmail(), member.getPassword());
+        System.out.println("로그인 시도 결과: " + (isLoggedIn ? "성공" : "실패"));
+
         if (isLoggedIn) {
             return ResponseEntity.ok("로그인 성공");
         } else {
             return ResponseEntity.badRequest().body("로그인 실패");
         }
-    }
+    }*/
 }
