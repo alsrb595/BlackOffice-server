@@ -11,14 +11,16 @@ public class Memberdto {
     @AllArgsConstructor
     @ToString
     public static class Post{
-        @NotBlank(message = "Username cannot be blank")
-        private String username;  //id
-
+        private Long id;
         @NotBlank(message = "Password cannot be blank")
         private String password;
 
         @Email(message = "Email should be valid")
         @NotBlank(message = "Email is required")
         private String email;
+        public Post(Long id, String email) {
+            this.id = id;
+            this.email = email;
+        }
     }
 }
