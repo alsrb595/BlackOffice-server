@@ -38,7 +38,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)  // CSRF 보호를 비활성화
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))  // 세션을 사용하지 않음
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/api/members/register", "/api/members/login", "/member_info/**", "/login", "/community/**", "/mypage/**", "/member_info/**", "/reservation/**", "/seat/**").permitAll()  // 인증 없이 접근 가능
+                        .requestMatchers("/api/members/register", "/api/members/login","/api/auth/login", "/member_info/**", "/login", "/community/**", "/mypage/**", "/member_info/**", "/reservation/**", "/seat/**").permitAll()  // 인증 없이 접근 가능
                         .anyRequest().authenticated()  // 다른 모든 요청은 인증 필요
                 );
 
